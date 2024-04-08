@@ -1,0 +1,586 @@
+flutter paints the user interface on the screen
+(const) Material app is like a base container
+center widget
+------------------------------------------------------------------------
+In Flutter, Scaffold is a fundamental widget that provides a layout structure for your app's UI. It serves as a blueprint for creating typical app layouts, such as a navigation bar, an app bar, a floating action button, and a body area where you can place other widgets like text, images, or lists.It's like having a ready-made template that you can customize to fit your app's specific needs.
+------------------------------------------------------------------------
+
+body is like the main thing where all our widgets reside
+------------------------------------------------------------------------
+IMAGES FROM NET
+
+for image widget:
+Image(
+    image: Network image(from the internet) and asset image(from our device) written in quotes
+
+)
+------------------------------------------------------------------------
+SHORTCUT
+
+If we press alt+enter on the widget we can get various(to center that widget)  
+CTRL+Q to show the quick docs
+stless template for stateless widget
+--------------------------------------------------------------------------------
+TO ADD ASSET IMAGES
+
+create a new directory for storing images
+to tell flutter that image is there we make changes to pubspec.yaml file
+if you have 2 spaces in the yaml file then it is treated as a child inside another
+each indentation in yaml file is 2 spaces only
+after saving do packages get to get it into your file
+images(file name)/ -- to include all the images
+
+----------------------------------------------------------------------------------
+ADDING APP ICONS TO APP
+
+app icon generator website
+android->app->src->main->res all that start with mipmap are app icon folders
+reveal in finder to open the folder in windows explorer(show in explorer for windows)
+
+ios->runner->assets.xcassets->app here are all the icon images of ios app
+
+to fill the entire circle with the app icon:-
+foldername(right click)->flutter->open android module in android studio->new window->app->res(right click)->new->image asset->path(your photo)->resize    
+
+------------------------------------------------------------------------------------------------------
+I AM POOR
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      backgroundColor: Colors.indigo.shade300,
+      appBar: AppBar(
+        backgroundColor: Colors.indigo.shade900,
+        title: Center(
+          child: Text(
+            'I am Poor',
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
+      ),
+      body: Center(
+        child: Image(
+          image: AssetImage('images/coal.png'),
+        ),
+      ),
+    ),
+  ));
+}
+
+-------------------------------------------------------------------------------------------------------------
+CLONING THE CODE FROM GIT HUB
+like a template code
+------------------------------------------------------------------------------------------------------------
+WIDGET
+
+type stless for boiler plate code of stateless widget
+hot reload does not run the entire code again it only runs that part of the code where we have done the changes in the build part of stateless widget. it maintains the state in which the app is. it does not start the app from the beginning
+
+hot restart does not maintain the state it restarts the state from the beginning
+Containers with no children try to be as big as possible
+but when the container as a child, the child grabs all the properties of the container
+
+SafeArea widget(ALT+ENTER) moves the widget only to the visible part of the screen
+
+To send the container apart from the edge we use the margin property margin->EdgeInsets.all(20) for all the directions and 
+
+edgeinsets.symmetric(vertical :50, horizontal:20) for only particular axis
+
+EdgeInsets.fromLTRB(left,top,right,bottom)
+width: double.infinity to give infinite width
+container and center can only have 1 child
+
+padding->EdgeInsets.all(20)
+
+for multiple children->row and column widget
+column takes up the maximum of the main axis size
+mainAxisSize: MainAxisSize.min to allow it to spread only till the containers that we have added
+verticalDirection: VerticalDirection.up to go from down to up
+for spacing between the containers mainAxisAlignment: mainAxisAlignment.center moves all the containers to the center
+mainAxisAlignment: mainAxisAlignment.spaceevenly to space the children evenly within the space of the column
+mainAxisAlignment: mainAxisAlignment.spaceBetween to space them evenly(top,mid and center)
+
+crossAxisAlignment: CrossAxisAlignment.end to align them perpendicular to the main axis
+crossAxisAlignment: CrossAxisAlignment.stretch to stretch it fully along the perpendicular axis
+
+crossAxisAlignment: CrossAxisAlignment.baseline, for aligning along the row 
+necesasry condition for crossAxisAlignment is setting the textBaseline to not null->textBaseline: TextBaseline.alphabetic,
+
+
+SizedBox for having spacing between the children
+SizedBox(
+    height:20
+)
+------------------------------------------------------------------------------------------------------
+
+@override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home:Scaffold(
+          backgroundColor: Colors.teal,
+          body: SafeArea(
+            child:Column(
+              children:[
+                Container(
+                color: Colors.white,
+                child: Center(child: Text('hello')),
+                height: 100,
+                  width: 100,
+              ),
+                Container(
+                  color: Colors.red,
+                  child: Center(child: Text('hello')),
+                  height: 100,
+                  width: 100,
+
+                )
+              ]
+
+            )
+          )
+        ),
+    );
+
+-----------------------------------------------------------------------------------------------------
+MYAPP
+
+CircleAvatar() used for user profile, has backgroundimage: imageasset
+CTRL+Q to show the quick docs
+fonts from fonts.google.com
+going to yaml file to import the font style, doing same steps as done in image asset
+
+if we do anything in the yaml file like add an image, we need to restart the simulator for it to reflect the changes
+
+inside text style-> letter spacing
+
+Icon(Icons.add_cart)  Icons are better than images(Icons are drawn on the screen they dont become pixalated)
+
+Card instead of container(cards dont have padding property)
+We can have padding wrapped around another widget
+
+card has a property known as ListTile which has leading and trailing icons and text(much better than a row to represent just icons and text)
+
+card comes with default white backgroundColor
+
+divider adds a 1px thick line
+
+---------------------------------------------------------------------------------------------------------------
+MYAPP CODE:-
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MyApp()
+  );
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+        home:Scaffold(
+          backgroundColor: Colors.purple.shade900,
+          body: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 65,
+                  backgroundImage: AssetImage('images/img.png'),
+                ),
+                Text(
+                  'Siddharth Thikekar',
+                  style: TextStyle(
+                    fontFamily: 'Gorditas',
+                    color: Colors.white,
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  'FLUTTER DEVELOPER',
+                  style: TextStyle(
+                    fontSize: 20,
+                    letterSpacing: 8,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'SpaceGrotesk',
+                    color: Colors.grey,
+
+                  ),
+                ),
+                SizedBox(
+                  width: 180,
+                  height: 20,
+                  child: Divider(
+                    color: Colors.white,
+                  ),
+                ),
+                Card(
+                  margin: EdgeInsets.only(left:80,top: 20,right: 60),
+                  child:ListTile(
+                    leading: Icon(
+                      Icons.call,
+                      size:38,
+                      color: Colors.purple.shade900,
+                    ),
+                    title: Text(
+                      '+91 9372075870',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                          color: Colors.purple.shade900
+                      ),
+                    ),
+                  ),
+                ),
+
+                Card(
+                    margin: EdgeInsets.only(left:80,top: 20,right:60),
+                  child: ListTile(
+                    leading: Icon(Icons.mail,
+                      size:38,
+                      color: Colors.purple.shade900,
+                    ),
+                    title: Text(
+                      'siddharth@gmail.com',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                          color: Colors.purple.shade900
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            )
+          )
+    );
+  }
+}
+
+-------------------------------------------------------------------------------------------------------
+DICEE
+
+expanded should be a CHILD of row or column widget
+expanded takes up all the screen space along the main axis
+if we use flex inside expanded it sets up size (ratio wise), by default flex is 1
+
+Image.asset or Image.network is same as before just with less nesting than before.
+
+Text button(Flat button name has been changed) has default padding of 16 from left and right
+
+Text button(Flat button name has been changed) has a compulsory onPressed characteristic 
+
+onPressed has a function void callback (anonymous function) with no arguments and no return statements 
+
+$sign to use variable in print statement
+Keeping the variable inside build method
+
+Dart has static typed and dynamic typed variables 
+Var a = dynamic
+Int a = static
+
+Stful shortcut
+
+Stateful widgets are meant to be changed(picture is again painted)
+Stateless widgets are not meant to change(picture once painted is not changed)
+
+We cant use hot reload with stateful widget
+ 
+After changing the variable we need to call the build method again, because of this we use setstate inside onpressed or well have to hot reload it to call build method again
+
+Import ‘math’ in single quote
+
+Dartpad for coding
+
+Random().nextInt(6) generates number from  
+0 to 5
+
+-------------------------------------------------------------------------------------------------------
+DICE CODE
+
+import 'package:flutter/material.dart';
+import'dart:math';
+void main() {
+  runApp(
+    Myapp()
+  );
+}
+
+
+class Myapp extends StatefulWidget {
+  const Myapp({super.key});
+
+  @override
+  State<Myapp> createState() => _MyappState();
+}
+
+class _MyappState extends State<Myapp> {
+  int leftdicenumber=2;
+  int rightdicenumber=2;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+          backgroundColor: Colors.red,
+          appBar: AppBar(
+            backgroundColor: Colors.red.shade900,
+            title: Center(
+              child: Text(
+                'DICEEEEE',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          body: Center(
+            child: Row(
+              children: [
+                Expanded(
+                    child:TextButton(
+                      onPressed: (){
+                        setState(() {
+                          leftdicenumber=Random().nextInt(6)+1;
+                          rightdicenumber=Random().nextInt(6)+1;
+                        });
+                      }
+                      ,
+                        child: Image.asset('images/dice$leftdicenumber.png')
+                    )
+                ),
+                Expanded(
+                    child: TextButton(
+                      onPressed: (){
+                        setState(() {
+                          rightdicenumber=Random().nextInt(6)+1;
+                          leftdicenumber=Random().nextInt(6)+1;
+                        });
+                      },
+                        child: Image.asset('images/dice$rightdicenumber.png'))
+                ),
+              ],
+            ),
+          )
+      ),
+    );
+  }
+}
+
+-----------------------------------------------------------------------------------------------------
+XYLOPHONE
+
+To include the flutter packages inside the code we need to add the package name in dependencies of the yaml file
+
+Assets music package to import and not net player
+
+In Asset player we need not specify the folder name. It already that we have that files in assets folder. We just need the file name.
+
+The end line within each function should end with ;  
+
+In functions 
+Int add(int n1, int n2) {
+Return n1+n2
+}
+
+Is equal to 
+Int app(int n1,int n2) => n1+n2
+
+But the => only works for single line of code inside the function.
+
+----------------------------------------------------------------------------------------------------
+Quizzler
+
+TODO in comment
+
+List:- collection of data
+Column and row accept list of widgets only 
+
+To specify the datatype that goes inside list:-
+
+List<string> listname : This only accepts string as its members 
+
+Only List listname creates dynamic list with any datatype
+
+listname.add adds an element to the end of the list
+
+print( Mylist[3])
+
+print(Mylist.index(‘katie’))
+
+Mylist.add(‘ben’)
+
+Mylist.insert(2,’ben’)
+
+Mylist.last retrieves the last elements
+
+Mylist.first retrieves the first elements
+
+Mylist<string> listname= []; creates an empty list
+
+We can add the list of string in the Text section as questions[0]
+
+Every class has a name with starting letter as capital
+
+To add a new class in a seperate dart file, go to lib folder of project and create a new dart file
+
+A constructor of a class Question
+
+class Question {
+  String question=' ';
+  bool answer=false;
+
+  Question({String? q, bool? ans}) {
+    question = q ?? 'Default question'; // Providing a default value if q is null
+    answer = ans ?? false; // Providing a default value if ans is null
+  }
+}
+
+List<Question>qb=[
+    Question(q:'The Earth is the largest planet in the solar system.',ans: false),
+    Question(q:'Oxygen is the most abundant element in the Earth\'s atmosphere.',ans: true),
+    Question(q:'The Great Wall of China can be seen from space with the naked eye.',ans: false),
+];
+
+for accessing elements-->
+qb[questionnumber].answer
+qb[questionnumber].question
+
+To call the class
+
+Question q1= Question ( a: earth is , b: false)
+
+To use the newly made file in different dart file we have to import it into our project.
+
+A class is like a blueprint of a car
+
+An object is like a car that is ready out of a factory to drive
+
+We can create a constructor as normal function also with the { } brackets     
+
+abstraction is the process in which the set of work is divided and all the work is not done in the main()
+eg:- in a restaurant we have chef, cleaner and waiter.
+
+encapsulation means isolation one from another, the main cannot change the value in the quiz brain class
+eg: the chef would not like the waiter telling him how to cook thats why we keep them different 
+
+To make the variable as private add an underscore in front of the variable name -->
+_questioname
+
+we can do inheritence by using extends --> class electriccar extends car
+
+In polymorphism we can do the changes in the parents methods by override, but we have to keep the name same as that in the parent function
+
+we can also call the same parent method in the child by using super keyword inside the overridden method
+
+----------------------------------------------------------------------------------------------------------------
+
+BMI calculator
+
+theme(Themedata) property of material app:- 
+Defines the configuration of the overall visual Theme for a MaterialApp or a widget subtree within the app. The MaterialApp theme property can be used to configure the appearance of the entire app.
+
+primaryColor in Themedata changes the background color for major parts of the app (toolbars, tab bars, etc) nut not the Scaffold body
+
+backgroundColor:Theme.of(context).primaryColor in appbar
+
+The 0xFF prefix represents the alpha value, which is the transparency level of the color, where 0x00 is fully transparent, and 0xFF is fully opaque.
+
+ThemeData.dark().copywith --> here the copywith changes the things which we specify in it apart from the dark theme
+
+In dark theme it automatically changes the colour of text to white
+
+@required in parameters to set the parameters as required
+
+final and const are used to declare constants
+
+Use const when you want to create a compile-time constant. The value must be known at compile-time, and it's evaluated during compilation.
+
+with final variables can also be set during runtime.
+
+both of them are immutable and are destoryed and created from the start if we make any changes.
+
+Widget? cardchild; we can make it have null value by this(we can make this optional apart from required field)
+
+Gesture detector does not disturb the marign and qualities as text button doess.
+
+enum are used when we dont want to add integers to represent something. And you cant create enums inside any class. enum names are like class name which start with a capital letter
+
+we can also pass function as a parameter in other class
+void main(){
+  Car mycar = Car(slowdrive);
+}
+class Car{
+  Car({this.drive});
+  Function drive;
+}
+
+void slowdrive(){
+  print('driving slow ');
+}
+
+the slider will require a double value
+
+value: height.toDouble(),
+min: 120,
+max: 220,
+activeColor: Colors.white,
+thumbColor: Color(0xFFF73057),
+inactiveColor: CupertinoColors.systemGrey,
+onChanged: (double newvalue){
+  setState(() {
+    height=newvalue.round();
+  });
+
+here is value of newvalue is set to be value and it returns that newvalue as we slide the slider
+
+MAPS-> 
+Map<String,int>mapname={
+  'rahul':1242342,
+  'trishna': 45353,
+}
+
+String tells us about key datatype and int tells about value datatype
+we can access the value for the given key by--> mapname['rahul'] which will given result as --> 1242342
+
+navigation
+
+the screens are placed on one another as stacks, there are 2 ways of doing the navigation one is by setting the route and next by just pushing it 
+
+1--> by map way
+we can also replace home: by initial route:'/'
+routes: {
+  '/first': (context) => Screen1(),
+  '/second': (context) => Screen2(),
+}
+
+onPressed(){
+  Navigator.pushnamed(context,'/second');
+}
+
+
+
+2 --> to just push it (for less number of pages)
+Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => SecondRoute()),
+  );
+
+
+Return to the first route using Navigator.pop()
+
+we can given names to functions
+
+const ktextstyle =TextStyle(
+fontSize: 50,
+fontWeight: FontWeight.w900,
+);
+
+textAlign: TextAlign.center,
