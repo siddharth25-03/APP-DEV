@@ -584,3 +584,58 @@ fontWeight: FontWeight.w900,
 );
 
 textAlign: TextAlign.center,
+
+----------------------------------------------------------------------------------------------------------
+CLIMA
+
+we use async for the processes that take up time so that they run in backend and do not disturb our frontend   
+apart from sync, async are better as they do not execute sequentially   
+
+Future<String> it is the return type of a Function where Future says that it will take time and return in future(future is like a receipt that we will get something in the future) and string says about the datatype to be retutrned 
+
+await is given to a method when we want it to finish execution and then only go to another process in an asynchonous system( to use await use have to use async)
+
+we can only use await for future functions
+
+lifecycle of stateful widget( initial, build, deactivate)
+
+initial:- when the stateful widget is inserted in a widget tree then it is called 
+
+build:- when we make any cahnges in the stateful widget this is called
+
+deactivate:- when we remove(destroyed) this widget from the widget tree this is called
+
+String mystring='15';
+double.parse(mystring) --> coverts the string into double number but it will not convert 'abc' etc.
+
+NULL AWARE OPERATOR
+print(Mymarginasdouble ?? 30.0) -> if we have Mymarginasdouble as null then it will take 30 or else print the Mymarginasdouble
+
+try{
+
+}
+catch(e){
+
+}
+
+we can also use throw keyword to throw an exception of your own choice on a condition.
+
+API are set of rules that define how to access someone elses code to use their funcitonality
+
+import 'package:sky_engine/_http/' (as) http --> using as keyword
+
+jsondecoder(data) in import 'dart:convert'; package
+
+We can show the loading screen using the flutter spinkit package
+
+In stateful widgets when we create them we get created Locationscreen and Locationscreenstate and both of them are different we cannot tap into variables of  Locationscreen in Locationscreenstate. We can access them using widget.nameofvraiable in the initial function of the Locationscreenstate.
+
+context in the navigator means the state of the current app is being push niche of some other page
+
+TextField has an onChanged(value){} which will get trigger when we input a value in it
+
+Navigator.pop(context, cityname) helps to pass data backwards which we can access through the navigator.push method where we wrote it.
+
+--------------------------------------------------------------------------------------------------------
+FLASHCHAT
+
