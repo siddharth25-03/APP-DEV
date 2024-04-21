@@ -42,7 +42,7 @@ class _RegistrationscreenState extends State<Registrationscreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
+              Expanded(// of the doctor image
                 child: GestureDetector(
                   onTap: (){
                     setState(() {
@@ -52,14 +52,14 @@ class _RegistrationscreenState extends State<Registrationscreen> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(
-                        color: selectedpath==Profession.doctor ? Color(0xFF013E36) : Colors.white,
-                        width: 2.5,
-                      )
+                        border: Border.all(
+                          color: selectedpath==Profession.doctor ? Color(0xFF013E36) : Colors.white,
+                          width: 2.5,
+                        )
                     ),
                     margin: EdgeInsets.only(right: 10,left: 10,bottom: 30),
                     child: Image(
-                        image: AssetImage('images/doc.jpg'),
+                      image: AssetImage('images/doc.jpg'),
                     ),
                   ),
                 ),
@@ -67,7 +67,7 @@ class _RegistrationscreenState extends State<Registrationscreen> {
               SizedBox(
                 width: 20,
               ),
-              Expanded(
+              Expanded( // of the patient image
                 child: GestureDetector(
                   onTap: (){
                     setState(() {
@@ -126,7 +126,10 @@ class _RegistrationscreenState extends State<Registrationscreen> {
               style: TextStyle(
                 fontSize: 18,
               ),
-              onChanged: (value) {},
+              onChanged: (value) {
+
+
+              },
               decoration: kinputdecor.copyWith(
                   hintText: 'Enter your password',
                   prefixIcon: Icon(

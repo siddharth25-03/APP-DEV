@@ -639,3 +639,25 @@ Navigator.pop(context, cityname) helps to pass data backwards which we can acces
 --------------------------------------------------------------------------------------------------------
 FLASHCHAT
 
+with static you dont need to make object of any class to access the static method or static variable.
+
+HERO 
+in hero animations you need to keep the tag of both the places same where you want this animation to be
+
+CUSTOM 
+
+for custom flutter animations you just need to have ticker using (WITH) keyword for making the stateful class as a ticker 
+and it also has animation controller as the with vsync property to mention who is the ticker.
+vsync: this, 
+
+controller.forward proceeds the value from 0 to 1 , controller.reverse(from:1)
+
+mixin are used to combine or inherit from more than 1 methods as extends does no allow it. it is used with the WITH keyword.
+
+A future represents a single asynchronous operation that will eventually complete and return a value. Think of it like ordering food at a restaurant. You place your order (start the future), and then you wait for the food to be cooked (the asynchronous operation). Once it's ready, you get your food (the completed future) and can continue with your meal.
+
+A stream, on the other hand, represents a sequence of asynchronous events. It's like a continuous flow of data. Imagine you're watching a live stream of a sports game. The events keep coming in one after another, and you can react to each event as it happens.
+
+streambuilder is used to build a widget when a new data occurs in the stream it does this by setstate
+streambuilder will only build a widget
+

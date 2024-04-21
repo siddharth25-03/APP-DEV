@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'homescreen.dart';
+import 'firstpage.dart';
 import 'loginscreen.dart';
 import 'registrationscreen.dart';
 import 'mainscreen.dart';
@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
         'loginscreen': (context) => Loginscreen(),
         'registrationscreen': (context) => Registrationscreen(),
         'mainscreen': (context) => Mainscreen(),
-
       },
       theme: ThemeData.light(),
         home: Homescreen(),

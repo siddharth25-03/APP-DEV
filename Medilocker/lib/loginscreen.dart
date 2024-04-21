@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medilocker/mainscreen.dart';
 import 'constants.dart';
 
 class Loginscreen extends StatefulWidget {
@@ -9,11 +10,13 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
+
+  String email=' ';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +38,7 @@ class _LoginscreenState extends State<Loginscreen> {
             tag: 'logo',
             child: Image(
               height: 150,
-              image: AssetImage('images/logo1.jpg'),
+              image: AssetImage('images/translogo.png'),
             ),
           ),
           SizedBox(
@@ -49,7 +52,11 @@ class _LoginscreenState extends State<Loginscreen> {
               style: TextStyle(
                 fontSize: 18,
               ),
-              onChanged: (value) {},
+              onChanged: (value) {
+                setState(() {
+                  email=value;
+                });
+              },
               decoration: kinputdecor,
             ),
           ),
@@ -64,7 +71,9 @@ class _LoginscreenState extends State<Loginscreen> {
               style: TextStyle(
                 fontSize: 18,
               ),
-              onChanged: (value) {},
+              onChanged: (value) {
+
+              },
               decoration: kinputdecor.copyWith(
                   hintText: 'Enter your password',
                   prefixIcon: Icon(
@@ -86,7 +95,10 @@ class _LoginscreenState extends State<Loginscreen> {
                 borderRadius: BorderRadius.circular(30.0),
                 child: MaterialButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, 'mainscreen');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Mainscreen(Email: email,))
+                    );
                   },
                   minWidth: 200.0,
                   height: 42.0,
