@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:medilocker/mainscreen.dart';
 import 'Reminder.dart';
+import 'profile_page.dart';
 
 class Mainscreen extends StatefulWidget {
   Mainscreen({this.Email});
@@ -12,7 +13,7 @@ class Mainscreen extends StatefulWidget {
 }
 
 class _MainscreenState extends State<Mainscreen> {
-  int currentindex=0;
+  int currentindex=1;
   Color color=Colors.black;
   @override
   Widget build(BuildContext context) {
@@ -108,74 +109,9 @@ class _PrescriptionsState extends State<Prescriptions> {
   }
 }
 
-//----------------------------------------------------------------------------------------------------
-//PROFILEPAGE
 
-class Profilepage extends StatefulWidget {
-  Profilepage({this.email});
-  String? email;
 
-  @override
-  State<Profilepage> createState() => _ProfilepageState();
-}
 
-class _ProfilepageState extends State<Profilepage> {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        CircleAvatar(
-          maxRadius: 80,
-          child: Image(
-            image: AssetImage('images/defaultimage.png'),
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        Text(
-          '${widget.email}',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20,
-            color: Colors.black
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        GestureDetector(
-          onTap: (){
-            Navigator.pop(context);
-          },
-          child: Container(
-            height: 40,
-            width: 100,
-            margin: EdgeInsets.only(right: 50,left: 50),
-            decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.circular(30),
-              border: Border.all(
-                color: Colors.red,
-                width: 3
-              ),
-            ),
-            child: Text(
-              'Log Out',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 20
-              ),
-            ),
-          ),
-        )
-      ],
-    );
-  }
-}
 
 
 

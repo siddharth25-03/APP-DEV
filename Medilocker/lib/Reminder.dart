@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Reminder {
@@ -6,6 +5,7 @@ class Reminder {
   TimeOfDay selectedTime;
   String remindcontext;
   bool isSwitched;
+
   Reminder({
     required this.frequency,
     required this.selectedTime,
@@ -28,9 +28,9 @@ class _AlarmpageState extends State<Alarmpage> {
   void addReminder(TimeOfDay selectedTime) {
     setState(() {
       reminders.add(Reminder(
-        frequency: 'Everyday',
+        frequency: 'Edit Frequency by tapping',
         selectedTime: selectedTime,
-        remindcontext: 'Take the painkiller',
+        remindcontext: 'Edit Context by tapping',
       ));
     });
   }
@@ -41,20 +41,37 @@ class _AlarmpageState extends State<Alarmpage> {
     });
   }
 
+  void updateReminder(int index, String newFrequency, String newContext) {
+    setState(() {
+      reminders[index].frequency = newFrequency;
+      reminders[index].remindcontext = newContext;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xAAD1D1D1),
+      backgroundColor: Colors.grey[200],
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Center(
           child: Text(
             'My Reminders',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         backgroundColor: Color(0xFF00BE78),
+        shape: ContinuousRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+        ),
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           final TimeOfDay? timeOfDay = await showTimePicker(
             context: context,
@@ -69,7 +86,14 @@ class _AlarmpageState extends State<Alarmpage> {
           }
         },
         backgroundColor: Color(0xFF00BE78),
-        child: Icon(Icons.add),
+        label: Text(
+          'Add Reminder',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        icon: Icon(Icons.add),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -77,63 +101,133 @@ class _AlarmpageState extends State<Alarmpage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: List.generate(reminders.length, (index) {
             return Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30, top: 20, bottom: 20),
-              child: Container(
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white,
-                ),
-                child: Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
+              padding: const EdgeInsets.all(16.0),
+              child: GestureDetector(
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      String newFrequency = reminders[index].frequency;
+                      String newContext = reminders[index].remindcontext;
+
+                      return AlertDialog(
+                        title: Text(
+                          "Edit Reminder",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextField(
+                              decoration: InputDecoration(labelText: "Frequency"),
+                              onChanged: (value) {
+                                newFrequency = value.toUpperCase(); // Convert to uppercase
+                              },
+                            ),
+                            TextField(
+                              decoration: InputDecoration(labelText: "Reminder Context"),
+                              onChanged: (value) {
+                                newContext = value;
+                              },
+                            ),
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Cancel",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              updateReminder(index, newFrequency, newContext);
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Save",
+                              style: TextStyle(color: Color(0xFF00BE78)),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              setState(() {
+                                reminders.removeAt(index);
+                              });
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Delete",
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
                             reminders[index].frequency,
                             style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 20,
-                              color: Color(0xFF8F959D),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                              color: Colors.grey[800],
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
+                          SizedBox(height: 8),
+                          Text(
                             '${reminders[index].selectedTime.format(context)}',
                             style: TextStyle(
-                              fontWeight: FontWeight.w900,
-                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24,
+                              color: Color(0xFF00BE78),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Text(
+                          SizedBox(height: 8),
+                          Text(
                             reminders[index].remindcontext,
                             style: TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 20,
+                              fontSize: 16,
+                              color: Colors.grey[600],
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 50),
-                      child: Switch(
+                        ],
+                      ),
+                      Switch(
                         activeColor: Color(0xFF00BE78),
                         value: reminders[index].isSwitched,
                         onChanged: (value) {
                           toggleSwitch(value, index);
                         },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             );

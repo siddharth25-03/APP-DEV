@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 
-enum Profession{
+enum Profession {
   doctor,
   patient,
 }
@@ -15,158 +15,160 @@ class Registrationscreen extends StatefulWidget {
 }
 
 class _RegistrationscreenState extends State<Registrationscreen> {
-
   Profession? selectedpath;
-  String typeofaccount='User!';
+  String typeofaccount = 'User!';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(
-            textAlign: TextAlign.center,
-            'Choose Account Type',
-            style: TextStyle(
-              color: Color(0xFF014037),
-              fontSize: 30,
-              fontWeight: FontWeight.w900,
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Text(
+                'Choose Account Type',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF014037),
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(// of the doctor image
-                child: GestureDetector(
-                  onTap: (){
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
                     setState(() {
-                      selectedpath=Profession.doctor;
-                      typeofaccount='Doctor!';
+                      selectedpath = Profession.doctor;
+                      typeofaccount = 'Doctor!';
                     });
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(
-                          color: selectedpath==Profession.doctor ? Color(0xFF013E36) : Colors.white,
-                          width: 2.5,
-                        )
+                      border: Border.all(
+                        color: selectedpath == Profession.doctor ? Color(0xFF013E36) : Colors.white,
+                        width: 2.5,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    margin: EdgeInsets.only(right: 10,left: 10,bottom: 30),
-                    child: Image(
-                      image: AssetImage('images/doc.jpg'),
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image(
+                        height: 150,
+                        image: AssetImage('images/doc.jpg'),
+                      ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Expanded( // of the patient image
-                child: GestureDetector(
-                  onTap: (){
+                GestureDetector(
+                  onTap: () {
                     setState(() {
-                      selectedpath=Profession.patient;
-                      typeofaccount='Patient!';
+                      selectedpath = Profession.patient;
+                      typeofaccount = 'Patient!';
                     });
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        border: Border.all(
-                          color: selectedpath==Profession.patient ? Color(0xFF013E36) : Colors.white,
-                          width: 2.5,
-                        )
+                      border: Border.all(
+                        color: selectedpath == Profession.patient ? Color(0xFF013E36) : Colors.white,
+                        width: 2.5,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    margin: EdgeInsets.only(right: 10,left: 10,bottom: 40),
-                    child: Image(
-                      image: AssetImage('images/pat.jpg'),
+                    margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image(
+                        height: 150,
+                        image: AssetImage('images/pat.jpg'),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          Text(
-            'Hello $typeofaccount\nPlease fill out the form below to get started',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.w400,
-              color: Color(0xFF014037),
-              fontSize: 15,
+              ],
             ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 25, right: 25),
-            child: TextField(
-              keyboardType: TextInputType.emailAddress,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Text(
+                'Hello $typeofaccount\nPlease fill out the form below to get started',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.w400,
+                  color: Color(0xFF014037),
+                  fontSize: 15,
+                ),
               ),
-              onChanged: (value) {},
-              decoration: kinputdecor,
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 25, right: 25),
-            child: TextField(
-              obscureText: true,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+                onChanged: (value) {},
+                decoration: kinputdecor,
               ),
-              onChanged: (value) {
-
-
-              },
-              decoration: kinputdecor.copyWith(
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: TextField(
+                obscureText: true,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+                onChanged: (value) {},
+                decoration: kinputdecor.copyWith(
                   hintText: 'Enter your password',
                   prefixIcon: Icon(
                     Icons.password_sharp,
                     size: 26,
-                  )),
+                  ),
+                ),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40, right: 40),
-            child: Container(
-              height: 60,
-              child: Material(
-                elevation: 10.0,
-                color: Color(0xFF02B272),
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, 'mainscreen');
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: Text(
-                    'REGISTER NOW',
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
+            SizedBox(
+              height: 40,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40.0),
+              child: Container(
+                height: 60,
+                child: Material(
+                  elevation: 10.0,
+                  color: Color(0xFF02B272),
+                  borderRadius: BorderRadius.circular(30.0),
+                  child: MaterialButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'mainscreen');
+                    },
+                    minWidth: 200.0,
+                    height: 42.0,
+                    child: Text(
+                      'REGISTER NOW',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

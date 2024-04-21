@@ -10,98 +10,98 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
-
-  String email=' ';
+  String email = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            margin: EdgeInsets.only(bottom: 30),
-            child: Text(
+      appBar: AppBar(),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(height: 50),
+            Text(
               'LOGIN IN',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontWeight: FontWeight.w900,
+                fontWeight: FontWeight.bold,
                 fontSize: 40,
                 color: Color(0xFF014037),
               ),
             ),
-          ),
-          Hero(
-            tag: 'logo',
-            child: Image(
-              height: 150,
-              image: AssetImage('images/translogo.png'),
-            ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 25, right: 25),
-            child: TextField(
-              keyboardType: TextInputType.emailAddress,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
+            SizedBox(height: 20),
+            Hero(
+              tag: 'logo',
+              child: Image(
+                height: 150,
+                image: AssetImage('images/translogo.png'),
               ),
-              onChanged: (value) {
-                setState(() {
-                  email=value;
-                });
-              },
-              decoration: kinputdecor,
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 25, right: 25),
-            child: TextField(
-              obscureText: true,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 18,
+            SizedBox(height: 50),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: TextField(
+                keyboardType: TextInputType.emailAddress,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+                onChanged: (value) {
+                  setState(() {
+                    email = value;
+                  });
+                },
+                decoration: kinputdecor.copyWith(
+                  hintText: 'Enter your email',
+                  prefixIcon: Icon(
+                    Icons.email,
+                    size: 26,
+                  ),
+                ),
               ),
-              onChanged: (value) {
-
-              },
-              decoration: kinputdecor.copyWith(
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: TextField(
+                obscureText: true,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+                onChanged: (value) {},
+                decoration: kinputdecor.copyWith(
                   hintText: 'Enter your password',
                   prefixIcon: Icon(
-                    Icons.password_sharp,
+                    Icons.lock,
                     size: 26,
-                  )),
+                  ),
+                ),
+              ),
             ),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 40, right: 40),
-            child: Container(
-              height: 60,
-              child: Material(
-                elevation: 10.0,
-                color: Color(0xFF02B272),
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Mainscreen(Email: email,))
-                    );
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
+            SizedBox(height: 40),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 60),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Mainscreen(Email: email),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF02B272),
+                  elevation: 10.0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(12.0),
                   child: Text(
                     'LOG IN',
                     style: TextStyle(
@@ -112,8 +112,8 @@ class _LoginscreenState extends State<Loginscreen> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
