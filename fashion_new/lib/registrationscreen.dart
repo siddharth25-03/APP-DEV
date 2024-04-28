@@ -1,21 +1,14 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'registrationscreen.dart';
-import 'homescreen.dart';
+import 'loginscreen.dart';
 
-class Loginscreen extends StatefulWidget {
-  const Loginscreen({super.key});
+class RegistrationScreen extends StatefulWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  State<Loginscreen> createState() => _LoginscreenState();
+  State<RegistrationScreen> createState() => _RegistrationScreenState();
 }
 
-class _LoginscreenState extends State<Loginscreen> {
+class _RegistrationScreenState extends State<RegistrationScreen> {
   String email='';
   @override
   Widget build(BuildContext context) {
@@ -124,14 +117,7 @@ class _LoginscreenState extends State<Loginscreen> {
                       height: 40,
                     ),
                     ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Homescreen(),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFFDC3678),
                         elevation: 10,
@@ -141,7 +127,7 @@ class _LoginscreenState extends State<Loginscreen> {
                         minimumSize: Size(300, 50),
                       ),
                       child: Text(
-                        'LOGIN',
+                        'REGISTER NOW',
                         style: TextStyle(
                           fontSize: 18,
                           color: Colors.white,
@@ -154,9 +140,9 @@ class _LoginscreenState extends State<Loginscreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Not a member?',style: TextStyle(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 15
+                            'Already have an account?',style: TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 15
                           ),
                           ),
                           SizedBox(
@@ -164,18 +150,13 @@ class _LoginscreenState extends State<Loginscreen> {
                           ),
                           GestureDetector(
                             onTap: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => RegistrationScreen(),
-                                ),
-                              );
+                              Navigator.pop(context);
                             },
                             child: Text(
-                              'Register Now',
+                              'Login In',
                               style: TextStyle(
-                                color: Color(0xFF7655AC),
-                                fontWeight: FontWeight.bold,
+                                  color: Color(0xFF7655AC),
+                                  fontWeight: FontWeight.bold,
                                   fontSize: 15
                               ),
                             ),
